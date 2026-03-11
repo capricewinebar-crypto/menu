@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPRICE • Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Adelia';
+      src: url('adelia.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --b: #000000;
+      --g: #d4af37;
+      --gd: #b8972e;
+      --gl: #e8c670;
+      --s: #d8c8b0;
+    }
+    
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background: var(--b) url('background-decor.jpeg') center / cover no-repeat fixed;
+      color: #fdfaf5;
+      font-family: 'Playfair Display', serif;
+      min-height: 100vh;
+      padding: 20px 10px;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+      z-index: -1;
+    }
+
+    header { text-align:center; margin-bottom:30px; position:relative; z-index:1; }
+    
+    .logo-link { text-decoration: none; display: inline-block; }
+    .logo-circle {
+      width: 180px; height:180px; margin:0 auto;
+      border-radius:50%; overflow:hidden;
+      border:4px solid var(--g);
+      box-shadow: 0 0 40px rgba(212,175,55,0.3);
+    }
+    .logo-circle img { width:100%; height:100%; object-fit:cover; }
+
+    .controls, .tabs { display:flex; justify-content:center; gap:12px; margin:20px 0; flex-wrap:wrap; position:relative; z-index:1; }
+    
+    .flag { width:40px; height: auto; cursor:pointer; opacity:0.6; border-radius:6px; transition:0.3s; border: 2px solid transparent; }
+    .flag.active { opacity:1; transform:scale(1.1); border-color: var(--g); }
+
+    .tab {
+      font-family:'Cinzel',serif; font-size:0.85rem; color:var(--g);
+      background:rgba(20,20,20,0.8); border:1px solid var(--gd);
+      padding:10px 8px; border-radius:8px; cursor:pointer; flex: 1 1 40%; text-align: center;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tab.active { background:var(--g); color:#000; border-color:var(--gl); font-weight: bold; }
+
+    .content { max-width:500px; margin:0 auto; }
+    .section { display:none; animation: fadeIn 0.5s ease; }
+    .section.active { display:block; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-frame {
+      background:rgba(15,15,15,0.9); border:1px solid var(--gd); border-radius:16px;
+      padding:25px 15px; margin:20px auto; box-shadow:0 0 30px rgba(0,0,0,0.5);
+      backdrop-filter:blur(8px);
+    }
+
+    h2 { font-family:'Cinzel Decorative',cursive; font-size:1.8rem; color:var(--gl); text-align:center; margin-bottom: 20px; letter-spacing:1px; text-shadow:0 3px 10px #000; }
+    h3 { font-size:1.4rem; color:#f0e0c0; text-align:center; margin:30px 0 15px; border-bottom: 1px solid rgba(212,175,55,0.2); display: inline-block; width: 100%; padding-bottom: 10px; }
+
+    .item { 
+      display:flex; flex-direction: column; position: relative;
+      margin-bottom:20px; padding-bottom:15px; 
+      border-bottom:1px solid rgba(212,175,55,0.15); 
+    }
+    .name { font-size:1.1rem; font-weight:700; color:#fff; margin-bottom: 4px; padding-right: 70px; }
+    .desc { font-style:italic; color:var(--s); font-size:0.85rem; line-height: 1.4; max-width: 100%; margin-top: 5px; }
+    .price { position: absolute; top: 0; right: 0; font-size: 1.1rem; color:var(--gl); font-weight:bold; }
+
+    .wine-note { color: var(--s); text-align: center; font-style: italic; font-size: 0.9rem; margin-bottom: 20px; opacity: 0.9; }
+
+    .wine-note.quote {
+      font-family: 'Adelia', cursive;
+      color: var(--gl);
+      font-size: 1.2rem;
+      margin: 20px 0 30px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    
+    .wine-note.quote .author {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.8rem;
+      display: block;
+      margin-top: 8px;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    footer { text-align:center; margin-top:40px; padding-bottom: 30px; color:var(--s); font-size:0.85rem; opacity:0.7; letter-spacing: 1px; }
+    
+    [data-lang="en"] .it, [data-lang="it"] .en { display:none; }
+  </style>
+</head>
+<body data-lang="it">
+
+<header>
+  <a href="https://www.instagram.com/capriceredwinebar?igsh=MzRlODBiNWFlZA==" target="_blank" class="logo-link">
+    <div class="logo-circle">
+      <img src="logo-caprice.png" alt="Caprice Logo">
+    </div>
+  </a>
+</header>
+
+<div class="controls">
+  <img src="https://flagcdn.com/w80/it.png" class="flag active" data-lang="it" alt="Italiano">
+  <img src="https://flagcdn.com/w80/gb.png" class="flag" data-lang="en" alt="English">
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="food">FOOD</button>
+  <button class="tab" data-tab="beverage">COCKTAILS</button>
+  <button class="tab" data-tab="vini">VINI</button>
+  <button class="tab" data-tab="distillati">DISTILLATI</button>
+</div>
+
+<div class="content">
+
+  <div id="food" class="section active">
+    <div class="section-frame">
+      <h2 class="it">PINSE E TAPAS</h2>
+      <h2 class="en">PINSAS & TAPAS</h2>
+
+      <p class="wine-note it">Siete gentilmente invitati a comunicare eventuali allergie e intolleranze. Grazie.</p>
+      <p class="wine-note en">Please inform us about any allergies or intolerances. Thank you.</p>
+
+       <h3 class="it">Pinse</h3>
+      <h3 class="en">Pinsas</h3>
+
+      <div class="item"><div><div class="name">Bufalina</div><div class="desc it">Passata di pomodoro, mozzarella di bufala DOP, olio extra vergine di oliva e olive</div><div class="desc en">Tomato sauce, buffalo mozzarella DOP, extra virgin olive oil and olives</div></div><div class="price">€11,00</div></div>
+      <div class="item"><div><div class="name">Gorgo</div><div class="desc it">Passata di pomodoro, mozzarella fiordilatte, gorgonzola e olive</div><div class="desc en">Tomato sauce, fiordilatte mozzarella, gorgonzola and olives</div></div><div class="price">€11,00</div></div>
+      <div class="item"><div><div class="name">Leggera</div><div class="desc it">Mozzarella fiordilatte, stracchino con yogurt, bresaola, rucola e grana</div><div class="desc en">Fiordilatte mozzarella, stracchino with yogurt, bresaola, rocket and grana</div></div><div class="price">€11,00</div></div>
+      <div class="item"><div><div class="name">Piccante</div><div class="desc it">Passata di pomodoro, mozzarella fiordilatte e salame piccante</div><div class="desc en">Tomato sauce, fiordilatte mozzarella and spicy salami</div></div><div class="price">€11,00</div></div>
+      <div class="item"><div><div class="name">Stracchinella</div><div class="desc it">Passata di pomodoro, mozzarella fiordilatte, stracchino, prosciutto cotto e gocce di pesto di pinoli</div><div class="desc en">Tomato sauce, fiordilatte mozzarella, stracchino, cooked ham and pine nut pesto drops</div></div><div class="price">€11,00</div></div>
+      <div class="item"><div><div class="name">Focaccia di Recco</div><div class="desc it">Focaccia con stracchino e olio extravergine di oliva</div><div class="desc en">Focaccia with stracchino and extra virgin olive oil</div></div><div class="price">€12,00</div></div>
+      <div class="item"><div><div class="name">Recco e Crudo</div><div class="desc it">Focaccia con stracchino e prosciutto crudo di Parma</div><div class="desc en">Focaccia with stracchino and Parma ham</div></div><div class="price">€14,00</div></div>
+
+      <h3 class="it">Tapas</h3>
+      <h3 class="en">Tapas</h3>
+
+      <div class="item"><div><div class="name it">Stick di panissa fritta</div><div class="name en">Fried Panissa Sticks</div></div><div class="price">€5,00</div></div>
+      <div class="item"><div><div class="name it">Acciughe impanate con crema di maionese</div><div class="name en">Breaded Anchovies with Mayonnaise Cream</div></div><div class="price">€5,00</div></div>
+      <div class="item"><div><div class="name it">Pan fritto con crudo di Parma</div><div class="name en">Fried Bread with Parma Ham</div></div><div class="price">€7,00</div></div>
+      <div class="item"><div><div class="name it">Vitello tonnato alla nostra maniera</div><div class="name en">Vitello Tonnato Our Way</div></div><div class="price">€7,00</div></div>
+      <div class="item"><div><div class="name it">Pane multicereale con salmone, avocado, cipolla rossa e mandorle</div><div class="name en">Multigrain Bread with Salmon, Avocado, Red Onion and Almonds</div></div><div class="price">€7,00</div></div>
+      <div class="item"><div><div class="name it">Pane tomate e burrata</div><div class="name en">Tomato Bread and Burrata</div></div><div class="price">€5,00</div></div>
+      <div class="item"><div><div class="name it">La nostra patata con salsa roja</div><div class="name en">Our Potato with Roja Sauce</div></div><div class="price">€5,00</div></div>
+    </div>
+  </div>
+
+  <div id="beverage" class="section">
+    <div class="section-frame">
+      <h2 class="it">COCKTAILS</h2>
+      <h2 class="en">COCKTAILS</h2>
+
+      <h3 class="it">Signature Cocktails</h3>
+      <h3 class="en">Signature Cocktails</h3>
+
+      <div class="item"><div><div class="name">Velvet Caprice</div><div class="desc it">Gin al gelsomino,Fiori di Sambuco, prosecco rosé, petali di rosa</div><div class="desc en">Jasmine gin,Edelflowers Liquor, rosé prosecco, rose petals</div></div><div class="price">€10,00</div></div>
+      <div class="item"><div><div class="name">Midnight Ember</div><div class="desc it">Mezcal affumicato, Cynar, sciroppo di fico nero, bitter al caffè, scorza d’arancia bruciata</div><div class="desc en">Smoked mezcal, Cynar, black fig syrup, coffee bitters, burnt orange peel</div></div><div class="price">€12,00</div></div>
+      <div class="item"><div><div class="name">Golden Opulence</div><div class="desc it">Bourbon 12 anni, caramello salato, riduzione di Champagne</div><div class="desc en">12yo bourbon, salted caramel, Champagne reduction</div></div><div class="price">€12,00</div></div>
+      <div class="item"><div><div class="name">Saffron Sunset</div><div class="desc it">Vodka infusa allo zafferano, Cointreau, succo di pompelmo rosa, sciroppo di vaniglia</div><div class="desc en">Saffron-infused vodka, Cointreau, pink grapefruit juice, vanilla syrup</div></div><div class="price">€10,00</div></div>
+      <div class="item"><div><div class="name">Lavender Smoke</div><div class="desc it">Gin alla lavanda, liquore al mirto, succo di limone, miele affumicato</div><div class="desc en">Lavender gin, myrtle liqueur, lemon juice, smoked honey</div></div><div class="price">€10,00</div></div>
+      <div class="item"><div><div class="name">Black Truffle Martini</div><div class="desc it">Vodka al tartufo nero, dry vermouth, gocce di olio al tartufo, oliva</div><div class="desc en">Black truffle vodka, dry vermouth, truffle oil drops, olive</div></div><div class="price">€12,00</div></div>
+      <div class="item"><div><div class="name">Ruby Elixir</div><div class="desc it">Rum invecchiato, Campari, succo di melograno, lime, bitter all’arancia</div><div class="desc en">Aged rum, Campari, pomegranate juice, lime, orange bitters</div></div><div class="price">€10,00</div></div>
+
+      <h3 class="it">Analcolici</h3>
+      <h3 class="en">Non-Alcoholic</h3>
+
+      <div class="item"><div><div class="name">Virgin Velvet</div><div class="desc it">Sciroppo al gelsomino, St-Germain analcolico, prosecco rosé zero, petali di rosa</div><div class="desc en">Jasmine syrup, non-alcoholic St-Germain, zero rosé prosecco, rose petals</div></div><div class="price">€9,00</div></div>
+      <div class="item"><div><div class="name">Ember Glow</div><div class="desc it">Tè affumicato, sciroppo di fico nero, bitter analcolico al caffè, scorza d’arancia bruciata</div><div class="desc en">Smoked tea, black fig syrup, non-alcoholic coffee bitters, burnt orange peel</div></div><div class="price">€9,00</div></div>
+      <div class="item"><div><div class="name">Opal Dream</div><div class="desc it"> di pistacchio, zafferano, vaniglia Tahiti, panna al cardamomo, soda</div><div class="desc en">Pistachio milk, saffron, Tahitian vanilla, cardamom cream, soda</div></div><div class="price">€9,00</div></div>
+    </div>
+  </div>
+
+  <div id="vini" class="section">
+    <div class="section-frame">
+      <h2 class="it">VINI</h2>
+      <h2 class="en">WINES</h2>
+      
+      <p class="wine-note quote it">
+        "Amo sulla tavola, quando si conversa, la luce di una bottiglia di intelligente vino."
+        <span class="author">Pablo Neruda</span>
+      </p>
+      <p class="wine-note quote en">
+        "I love on the table, when we converse, the light of a bottle of intelligent wine."
+        <span class="author">Pablo Neruda</span>
+      </p>
+      <p class="wine-note it">A causa della grande varietà di vini, alcune etichette potrebbero non essere disponibili.<br>Cercheremo comunque di soddisfare i vostri gusti.</p>
+      <p class="wine-note en">Due to the extensive selection of wines, some labels may not be available.<br>We will always strive to satisfy your tastes.</p>
+
+      
+      <h3 class="it">Rossi</h3>
+      <h3 class="en">Reds</h3>
+
+      <div class="item"><div><div class="name">Argentiera - Poggio ai Ginepri</div><div class="desc it">Toscana – Cabernet/Merlot: frutti neri, erbe aromatiche e finale lungo</div><div class="desc en">Tuscany – Cabernet/Merlot: black fruit, aromatic herbs and long finish</div></div><div class="price">€55,00</div></div>
+      <div class="item"><div><div class="name">Balbi Soprani - Barbaresco</div><div class="desc it">Piemonte – Nebbiolo: elegante, note floreali e tannini vellutati</div><div class="desc en">Piedmont – Nebbiolo: elegant, floral notes and velvety tannins</div></div><div class="price">€50,00</div></div>
+      <div class="item"><div><div class="name">Balbi Soprani - Barbaresco MAGNUM</div><div class="desc it">Piemonte – Nebbiolo: elegante, note floreali e tannini vellutati</div><div class="desc en">Piedmont – Nebbiolo: elegant, floral notes and velvety tannins</div></div><div class="price">€110,00</div></div>
+      <div class="item"><div><div class="name">Balbi Soprani - Barbera</div><div class="desc it">Piemonte – Barbera: ciliegia vivace, acidità brillante e finale fresco</div><div class="desc en">Piedmont – Barbera: bright cherry, brilliant acidity and fresh finish</div></div><div class="price">€37,00</div></div>
+      <div class="item"><div><div class="name">Balbi Soprani - Barolo</div><div class="desc it">Piemonte – Nebbiolo: potente, tabacco e tannini strutturati</div><div class="desc en">Piedmont – Nebbiolo: powerful, tobacco and structured tannins</div></div><div class="price">€55,00</div></div>
+      <div class="item"><div><div class="name">Balbi Soprani - Barolo MAGNUM</div><div class="desc it">Piemonte – Nebbiolo: potente, tabacco e tannini strutturati</div><div class="desc en">Piedmont – Nebbiolo: powerful, tobacco and structured tannins</div></div><div class="price">€120,00</div></div>
+      <div class="item"><div><div class="name">Balbi Soprani - Nebbiolo</div><div class="desc it">Piemonte – Nebbiolo: accessibile, frutti rossi e tocco floreale</div><div class="desc en">Piedmont – Nebbiolo: approachable, red fruit and floral touch</div></div><div class="price">€40,00</div></div>
+      <div class="item"><div><div class="name">Braida - Bracialè</div><div class="desc it">Piemonte – Barbera: ciliegia matura, vaniglia e buona persistenza</div><div class="desc en">Piedmont – Barbera: ripe cherry, vanilla and good persistence</div></div><div class="price">€45,00</div></div>
+      <div class="item"><div><div class="name">Braida - Bricco della Bigotta</div><div class="desc it">Piemonte – Barbera: elegante, spezie dolci e finale lungo</div><div class="desc en">Piedmont – Barbera: elegant, sweet spices and long finish</div></div><div class="price">€80,00</div></div>
+      <div class="item"><div><div class="name">Braida - Bricco Dell'Uccellone</div><div class="desc it">Piemonte – Barbera: strutturato, note tostate e frutta nera</div><div class="desc en">Piedmont – Barbera: structured, toasted notes and black fruit</div></div><div class="price">€85,00</div></div>
+      <div class="item"><div><div class="name">Braida - Montebruna</div><div class="desc it">Piemonte – Barbera: fresco, ciliegia e acidità vivace</div><div class="desc en">Piedmont – Barbera: fresh, cherry and lively acidity</div></div><div class="price">€42,00</div></div>
+      <div class="item"><div><div class="name">Bricco dei Guazzi - Albarossa</div><div class="desc it">Piemonte – Albarossa: frutti neri intensi, spezie e tannini morbidi</div><div class="desc en">Piedmont – Albarossa: intense black fruit, spices and soft tannins</div></div><div class="price">€44,00</div></div>
+      <div class="item"><div><div class="name">Bricco dei Guazzi - Barbera d'Asti</div><div class="desc it">Piemonte – Barbera: vivace, ciliegia e finale minerale</div><div class="desc en">Piedmont – Barbera: lively, cherry and mineral finish</div></div><div class="price">€35,00</div></div>
+      <div class="item"><div><div class="name">Bricco dei Guazzi - Barbera Superiore</div><div class="desc it">Piemonte – Barbera: più strutturata, legno e frutta matura</div><div class="desc en">Piedmont – Barbera: more structured, oak and ripe fruit</div></div><div class="price">€40,00</div></div>
+      <div class="item"><div><div class="name">Bricco dei Guazzi - Barolo</div><div class="desc it">Piemonte – Nebbiolo: classico, rose appassite e tannini potenti</div><div class="desc en">Piedmont – Nebbiolo: classic, dried rose and powerful tannins</div></div><div class="price">€60,00</div></div>
+      <div class="item"><div><div class="name">Bricco dei Guazzi - La Presidenta</div><div class="desc it">Piemonte – Barbera: elegante, note di confettura e spezie</div><div class="desc en">Piedmont – Barbera: elegant, jam notes and spices</div></div><div class="price">€37,00</div></div>
+      <div class="item"><div><div class="name">Bricco dei Guazzi - Nebbiolo</div><div class="desc it">Piemonte – Nebbiolo: fresco, frutti rossi e buona bevibilità</div><div class="desc en">Piedmont – Nebbiolo: fresh, red fruit and Bird's eye drinkability</div></div><div class="price">€40,00</div></div>
+      <div class="item"><div><div class="name">Collina dei Ciliegi - Amarone</div><div class="desc it">Veneto – Corvina blend: ciliegia sotto spirito, cioccolato e corpo vellutato</div><div class="desc en">Veneto – Corvina blend: cherry in spirit, chocolate and velvety body</div></div><div class="price">€60,00</div></div>
+      <div class="item"><div><div class="name">Domenico Clerico - Arte</div><div class="desc it">Piemonte – Nebbiolo blend: complesso, frutta scura e finale persistente</div><div class="desc en">Piedmont – Nebbiolo blend: complex, dark fruit and persistent finish</div></div><div class="price">€55,00</div></div>
+      <div class="item"><div><div class="name">Domenico Clerico - Nebbiolo Capisme</div><div class="desc it">Piemonte – Nebbiolo: ciliegia matura, spezie dolci e tannini eleganti</div><div class="desc en">Piedmont – Nebbiolo: ripe cherry, sweet spices and elegant tannins</div></div><div class="price">€48,00</div></div>
+      <div class="item"><div><div class="name">Frescobaldi - Calimaia</div><div class="desc it">Toscana – Sangiovese: frutti rossi freschi, note floreali e finale sapido</div><div class="desc en">Tuscany – Sangiovese: fresh red fruit, floral notes and sapid finish</div></div><div class="price">€40,00</div></div>
+      <div class="item"><div><div class="name">Frescobaldi - Lamaione</div><div class="desc it">Toscana – Merlot: frutti neri maturi, cioccolato e morbidezza vellutata</div><div class="desc en">Tuscany – Merlot: ripe black fruit, chocolate and velvety softness</div></div><div class="price">€90,00</div></div>
+      <div class="item"><div><div class="name">Frescobaldi - Morellino Santa Maria</div><div class="desc it">Toscana – Sangiovese: ciliegia fresca, erbe mediterranee e buona acidità</div><div class="desc en">Tuscany – Sangiovese: fresh cherry, Mediterranean herbs and bright acidity</div></div><div class="price">€37,00</div></div>
+      <div class="item"><div><div class="name">Frescobaldi - Mormoreto</div><div class="desc it">Toscana – Cabernet Sauvignon: cassis, tabacco e struttura potente</div><div class="desc en">Tuscany – Cabernet Sauvignon: cassis, tobacco and powerful structure</div></div><div class="price">€90,00</div></div>
+      <div class="item"><div><div class="name">Guado al Tasso - Il Bruciato</div><div class="desc it">Toscana – Cabernet blend: peperone verde, cassis e tannini fini</div><div class="desc en">Tuscany – Cabernet blend: green pepper, cassis and fine tannins</div></div><div class="price">€50,00</div></div>
+      <div class="item"><div><div class="name">Produttori Barbaresco - Barbaresco</div><div class="desc it">Piemonte – Nebbiolo: rosa, viola e tannini setosi</div><div class="desc en">Piedmont – Nebbiolo: rose, violet and silky tannins</div></div><div class="price">€43,00</div></div>
+      <div class="item"><div><div class="name">Produttori Barbaresco - Nebbiolo</div><div class="desc it">Piemonte – Nebbiolo: frutti rossi croccanti e finale floreale</div><div class="desc en">Piedmont – Nebbiolo: crunchy red fruit and floral finish</div></div><div class="price">€45,00</div></div>
+      <div class="item"><div><div class="name">Tenuta Luce - Luce della Vite</div><div class="desc it">Toscana – Sangiovese/Merlot: complesso, frutta matura e spezie orientali</div><div class="desc en">Tuscany – Sangiovese/Merlot: complex, ripe fruit and oriental spices</div></div><div class="price">€150,00</div></div>
+      <div class="item"><div><div class="name">Tenuta Luce - Lucente</div><div class="desc it">Toscana – Merlot/Sangiovese: vellutato, ciliegia nera e vaniglia</div><div class="desc en">Tuscany – Merlot/Sangiovese: velvety, black cherry and vanilla</div></div><div class="price">€50,00</div></div>
+
+      <h3 class="it">Bianchi</h3>
+      <h3 class="en">Whites</h3>
+
+      <div class="item"><div><div class="name">Gewürztraminer</div><div class="desc it">Intensamente aromatico e seducente. Corpo pieno, morbido e avvolgente, spesso con una leggera percezione off-dry.</div><div class="desc en">Intensely aromatic and seductive. Full body, soft and enveloping, often with a slight off-dry perception.</div></div><div class="price">€38,00</div></div>
+      <div class="item"><div><div class="name">Müller Thurgau</div><div class="desc it">Fresco e invitante. Leggero, vivace, con acidità media e finale rinfrescante.</div><div class="desc en">Fresh and inviting. Light, lively, with medium acidity and refreshing finish.</div></div><div class="price">€32,00</div></div>
+      <div class="item"><div><div class="name">Arneis</div><div class="desc it">Elegante e floreale. Corpo medio, morbido e rotondo, con acidità vibrante e finale persistente.</div><div class="desc en">Elegant and floral. Medium body, soft and round, with vibrant acidity and persistent finish.</div></div><div class="price">€35,00</div></div>
+      <div class="item"><div><div class="name">Pinot Grigio</div><div class="desc it">Pulito e rinfrescante, una sottile mineralità salina o mandorlata. Leggero-medio, con acidità vivace.</div><div class="desc en">Clean and refreshing, with subtle saline or almond minerality. Light-to-medium body, with lively acidity.</div></div><div class="price">€36,00</div></div>
+      <div class="item"><div><div class="name">Chardonnay</div><div class="desc it">Corpo da medio a pieno, struttura equilibrata e morbidezza cremosa.</div><div class="desc en">Medium to full body, balanced structure and creamy softness.</div></div><div class="price">€40,00</div></div>
+      <div class="item"><div><div class="name">Vermentino Sardo</div><div class="desc it">Mediterraneo e vibrante, note saline marine e un finale leggermente ammandorlato. Fresco, sapido, con acidità brillante.</div><div class="desc en">Mediterranean and vibrant, marine saline notes and slightly almond finish. Fresh, sapid, with brilliant acidity.</div></div><div class="price">€34,00</div></div>
+      <div class="item"><div><div class="name">Ribolla Gialla</div><div class="desc it">Minerale e raffinata. Corpo medio-leggero, secco, con acidità alta e finale persistente.</div><div class="desc en">Mineral and refined. Medium-light body, dry, with high acidity and persistent finish.</div></div><div class="price">€39,00</div></div>
+      <div class="item"><div><div class="name">Sauvignon</div><div class="desc it">Erbaceo e intensamente aromatico. Vibrante, teso, con acidità alta e finale secco e rinfrescante.</div><div class="desc en">Herbaceous and intensely aromatic. Vibrant, tense, with high acidity and dry, refreshing finish.</div></div><div class="price">€42,00</div></div>
+
+      <h3 class="it">Spumanti</h3>
+      <h3 class="en">Sparkling</h3>
+
+      <div class="item"><div><div class="name">Franciacorta Brut 2019</div><div class="desc it">Lombardia – Chardonnay/Pinot Nero: bollicine fini, crosta di pane, agrumi e mandorla</div><div class="desc en">Lombardy – Chardonnay/Pinot Noir: fine bubbles, brioche, citrus and almond</div></div><div class="price">€46,00</div></div>
+      <div class="item"><div><div class="name">Prosecco Valdobbiadene Superiore Brut</div><div class="desc it">Veneto – Glera: fiori bianchi, mela verde, pera, fresco e vivace</div><div class="desc en">Veneto – Glera: white flowers, green apple, pear, fresh and lively</div></div><div class="price">€28,00</div></div>
+      <div class="item"><div><div class="name">Trento DOC Brut Riserva</div><div class="desc it">Trentino – Chardonnay/Pinot Nero: note tostate, agrumi canditi, cremoso e persistente</div><div class="desc en">Trentino – Chardonnay/Pinot Noir: toasted notes, candied citrus, creamy and persistent</div></div><div class="price">€48,00</div></div>
+
+    </div>
+  </div>
+
+  <div id="distillati" class="section">
+    <div class="section-frame">
+      <h2 class="it">DISTILLATI</h2>
+      <h2 class="en">SPIRITS</h2>
+
+      <h3 class="it">Gin</h3><h3 class="en">Gin</h3>
+      <div class="item"><div><div class="name it">Bombay Sapphire</div><div class="desc it">Classico London Dry, ginepro dominante, note agrumate e speziate</div><div class="desc en">Classic London Dry, prominent juniper, citrus & spice notes</div></div><div class="price">€12,00</div></div>
+      <div class="item"><div><div class="name it">Hendrick's</div><div class="desc it">Cetriolo e petali di rosa, morbido e floreale</div><div class="desc en">Cucumber & rose petals, soft and floral</div></div><div class="price">€14,00</div></div>
+      <div class="item"><div><div class="name it">Monkey 47</div><div class="desc it">47 botaniche, ginepro intenso, agrumi, pepe, spezie complesse</div><div class="desc en">47 botanicals, intense juniper, citrus, pepper, complex spices</div></div><div class="price">€16,00</div></div>
+
+      <h3 class="it">Rum</h3><h3 class="en">Rum</h3>
+      <div class="item"><div><div class="name it">Havana Club 7 Años</div><div class="desc it">Invecchiato, caramello, vaniglia, frutta tropicale</div><div class="desc en">Aged, caramel, vanilla, tropical fruit</div></div><div class="price">€11,00</div></div>
+      <div class="item"><div><div class="name it">Diplomatico Reserva Exclusiva</div><div class="desc it">Venezuela, miele, cioccolato, frutta secca, morbido e persistente</div><div class="desc en">Venezuela, honey, chocolate, dried fruit, soft and persistent</div></div><div class="price">€14,00</div></div>
+      <div class="item"><div><div class="name it">Ron Zacapa 23</div><div class="desc it">Guatemala, ricco, cacao, caffè, vaniglia, finale lungo</div><div class="desc en">Guatemala, rich, cocoa, coffee, vanilla, long finish</div></div><div class="price">€18,00</div></div>
+
+      <h3 class="it">Whiskey</h3><h3 class="en">Whiskey</h3>
+      <div class="item"><div><div class="name it">Glenfiddich 12</div><div class="desc it">Speyside Single Malt, pera, miele, vaniglia, fresco</div><div class="desc en">Speyside Single Malt, pear, honey, vanilla, fresh</div></div><div class="price">€13,00</div></div>
+      <div class="item"><div><div class="name it">Lagavulin 16</div><div class="desc it">Islay, torba intensa, fumo, iodio, sherry dolce</div><div class="desc en">Islay, intense peat, smoke, iodine, sweet sherry</div></div><div class="price">€18,00</div></div>
+      <div class="item"><div><div class="name it">Jack Daniel’s Old No.7</div><div class="desc it">Tennessee, caramello, vaniglia, legno tostato, morbido</div><div class="desc en">Tennessee, caramel, vanilla, toasted oak, smooth</div></div><div class="price">€11,00</div></div>
+
+      <h3 class="it">Tequila e Mezcal</h3><h3 class="en">Tequila & Mezcal</h3>
+      <div class="item"><div><div class="name it">Patrón Silver</div><div class="desc it">Tequila 100% agave, pulito, agrumi, pepe bianco</div><div class="desc en">100% agave tequila, clean, citrus, white pepper</div></div><div class="price">€14,00</div></div>
+      <div class="item"><div><div class="name it">Don Julio Blanco</div><div class="desc it">Tequila cristallina, erbe fresche, agrumi, pepe</div><div class="desc en">Crystal tequila, fresh herbs, citrus, pepper</div></div><div class="price">€15,00</div></div>
+      <div class="item"><div><div class="name it">Del Maguey Vida</div><div class="desc it">Mezcal artigianale, affumicato, agrumi, erbe selvatiche</div><div class="desc en">Artisanal mezcal, smoky, citrus, wild herbs</div></div><div class="price">€16,00</div></div>
+
+      <h3 class="it">Amari</h3><h3 class="en">Amari</h3>
+      <div class="item"><div><div class="name it">Averna</div><div class="desc it">Sicilia, erbe, arancia, liquirizia, morbido e bilanciato</div><div class="desc en">Sicily, herbs, orange, licorice, soft and balanced</div></div><div class="price">€10,00</div></div>
+      <div class="item"><div><div class="name it">Amaro Montenegro</div><div class="desc it">39 erbe e spezie, agrumi, vaniglia, dolce-amaro</div><div class="desc en">39 herbs & spices, citrus, vanilla, sweet-bitter</div></div><div class="price">€10,00</div></div>
+      <div class="item"><div><div class="name it">Nonino Amaro</div><div class="desc it">Grappa invecchiata, erbe alpine, arancia, finale lungo</div><div class="desc en">Aged grappa base, alpine herbs, orange, long finish</div></div><div class="price">€12,00</div></div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="it">CAPRICE • Dal 1996 • Eleganza senza tempo</footer>
+<footer class="en">CAPRICE • Since 1996 • Timeless Elegance</footer>
+
+<script>
+  document.querySelectorAll('.flag').forEach(f => {
+    f.addEventListener('click', () => {
+      document.querySelectorAll('.flag').forEach(el => el.classList.remove('active'));
+      f.classList.add('active');
+      document.body.dataset.lang = f.dataset.lang;
+    });
+  });
+
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      t.classList.add('active');
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(t.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
